@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Hub</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      background: linear-gradient(180deg, #F5F7FA 0%, #EBEEF2 100%);
+      min-height: 100vh;
+      color: #1A202C;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6C5CE7, #2471A3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #718096;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #DDE2E8;
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+      border-color: #B0BEC5;
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .card-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-purple { background: linear-gradient(135deg, #E8E0FC, #D8CCFB); }
+    .icon-purple svg { stroke: #6C5CE7; }
+
+    .icon-red { background: linear-gradient(135deg, #FDE8E8, #F8D0D0); }
+    .icon-red svg { stroke: #C0392B; }
+
+    .icon-green { background: linear-gradient(135deg, #D5F5E3, #C3EDCC); }
+    .icon-green svg { stroke: #277D1F; }
+
+    .card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1A202C;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #718096;
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6C5CE7;
+    }
+
+    .card-footer svg {
+      width: 16px;
+      height: 16px;
+      stroke: #6C5CE7;
+      stroke-width: 2;
+      fill: none;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-footer svg {
+      transform: translateX(4px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      font-size: 14px;
+      color: #A0AEC0;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.5rem 1.5rem; }
+      .hero h1 { font-size: 30px; }
+      .hero p { font-size: 16px; }
+      .grid { padding: 0 1rem; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Content Hub</h1>
+    <p>Browse all UI mockups and component pages in one place.</p>
+  </div>
+
+  <div class="grid">
+
+    <a href="lead_gen.html" class="card">
+      <div class="card-icon icon-red">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h2>Lead Generation UI</h2>
+      <p>Capture emails, smart CTAs, trust signals, engagement widgets, and conversion components for blogs and newsletters.</p>
+      <div class="card-footer">
+        Open page
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+    <a href="inteliment_content_upgrade_mockup.html" class="card">
+      <div class="card-icon icon-purple">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h2>Content Upgrade Mockup</h2>
+      <p>Inline content upgrade mockup for capturing leads through gated bonus resources tied to articles.</p>
+      <div class="card-footer">
+        Open page
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+    <a href="insights_article_mockup_v2.html" class="card">
+      <div class="card-icon icon-green">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h10"/></svg>
+      </div>
+      <h2>Insights Article Mockup</h2>
+      <p>Article layout mockup with insights, analysis, and content presentation components.</p>
+      <div class="card-footer">
+        Open page
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>Content Hub &mdash; UI Mockups & Components</footer>
+
+</body>
+</html>
