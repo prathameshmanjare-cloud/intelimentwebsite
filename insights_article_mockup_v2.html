@@ -1,0 +1,316 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.article-wrap{background:#f0ede8;padding:20px;border-radius:var(--border-radius-lg)}
+.article{background:#fff;border:0.5px solid #ddd;border-radius:12px;max-width:680px;margin:0 auto;overflow:hidden}
+.progress-bar{height:3px;background:#e8e4df}
+.progress-fill{height:100%;width:62%;background:#5ba3d1}
+.body{padding:28px 32px 32px}
+.back{font-size:12px;color:#888;display:flex;align-items:center;gap:4px;margin-bottom:14px;cursor:pointer}
+.eyebrow{display:inline-flex;align-items:center;font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;background:rgba(91,163,209,.1);border:0.5px solid rgba(91,163,209,.35);color:#185FA5;padding:3px 10px;border-radius:20px;margin-bottom:14px}
+.h1{font-size:22px;font-weight:500;color:#1a1a1a;line-height:1.2;letter-spacing:-.02em;margin-bottom:14px}
+.meta{display:flex;align-items:center;gap:8px;padding-bottom:16px;border-bottom:0.5px solid #e2e2e2;margin-bottom:18px;font-size:12px;color:#999}
+.hero-img{width:100%;height:185px;border-radius:8px;margin-bottom:16px;overflow:hidden;border:0.5px solid #e8e4df}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.toolbar{background:#f7f5f2;border:0.5px solid #e2e2e2;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.btn-listen{background:#5ba3d1;border:none;color:#fff;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.divider-v{width:0.5px;height:18px;background:#ddd;flex-shrink:0}
+.btn-share{background:#fff;border:0.5px solid #ddd;color:#555;border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;flex-shrink:0}
+.share-drawer{background:#f7f5f2;border:0.5px solid rgba(91,163,209,.25);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:4px 10px;border-radius:20px;cursor:pointer;border:0.5px solid}
+.pill-li{background:#0077b512;border-color:#0077b540;color:#0C447C}
+.pill-tw{background:#f5f5f5;border-color:#ccc;color:#2C2C2A}
+.pill-wa{background:#25d36612;border-color:#25d36640;color:#0F6E56}
+.pill-cp{background:#fff;border-color:#ddd;color:#555}
+.section-gap{display:flex;flex-direction:column;gap:16px}
+.para{font-size:13px;color:#444;line-height:1.75}
+.h2{font-size:16px;font-weight:500;color:#1a1a1a;line-height:1.3;margin-top:4px}
+.bullets-block{background:#f7f5f2;border:0.5px solid #e2e2e2;border-left:3px solid #5ba3d1;border-radius:0 8px 8px 0;padding:14px 16px}
+.bullets-title{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:8px}
+.bullet-item{font-size:12px;color:#555;line-height:1.6;padding:3px 0;display:flex;gap:6px}
+.bullet-dot{color:#5ba3d1;flex-shrink:0}
+.inline-img{width:100%;height:130px;border-radius:8px;border:0.5px solid #e8e4df;overflow:hidden}
+.inline-img img{width:100%;height:100%;object-fit:cover}
+.caption{font-size:11px;color:#aaa;text-align:center;margin-top:5px;font-style:italic}
+.cta-banner{background:#EBF5FB;border:0.5px solid rgba(91,163,209,.35);border-radius:8px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.cta-heading{font-size:13px;font-weight:500;color:#0C447C;line-height:1.35;margin-bottom:4px}
+.cta-sub{font-size:11px;color:#185FA5}
+.cta-btn{background:#5ba3d1;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
+.tweet-block{background:#f0f8ff;border:0.5px solid #b5d4f4;border-radius:10px;padding:16px 18px}
+.tweet-quote{font-size:15px;font-weight:500;color:#0C447C;line-height:1.5;margin-bottom:12px;font-style:italic}
+.tweet-quote::before{content:'\201C';font-size:22px;color:#5ba3d1;line-height:0;vertical-align:-6px;margin-right:2px}
+.tweet-quote::after{content:'\201D';font-size:22px;color:#5ba3d1;line-height:0;vertical-align:-6px;margin-left:2px}
+.tweet-btn{display:inline-flex;align-items:center;gap:6px;background:#000;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:500;cursor:pointer}
+.engagement{background:#f7f5f2;border:0.5px solid #e2e2e2;border-radius:8px;padding:12px 16px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-top:22px}
+.like-btn{display:flex;align-items:center;gap:6px;background:rgba(239,68,68,.06);border:0.5px solid rgba(239,68,68,.35);color:#ef4444;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer;font-weight:500}
+.stars{display:flex;align-items:center;gap:6px}
+.star-label{font-size:12px;color:#999}
+.stars-row{display:flex;gap:2px;font-size:16px}
+.related{margin-top:22px}
+.related-title{font-size:16px;font-weight:500;color:#1a1a1a;margin-bottom:12px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.related-card{background:#f7f5f2;border:0.5px solid #e2e2e2;border-radius:8px;padding:12px 14px;cursor:pointer;transition:border-color 150ms}
+.related-card:hover{border-color:#aaa}
+.related-card img{width:100%;height:72px;object-fit:cover;border-radius:5px;margin-bottom:8px;border:0.5px solid #e2e2e2}
+.related-eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#5ba3d1;font-weight:500}
+.related-h{font-size:12px;font-weight:500;color:#1a1a1a;margin-top:3px;line-height:1.4}
+.related-meta{font-size:11px;color:#aaa;margin-top:4px}
+.slide-popup{background:#fff;border:0.5px solid #ddd;border-radius:10px;padding:14px 16px;margin-top:22px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+.popup-icon{width:36px;height:36px;background:#EBF5FB;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.popup-body{}
+.popup-title{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
+.popup-sub{font-size:12px;color:#777;margin-bottom:10px}
+.popup-input-row{display:flex;gap:6px}
+.popup-input{flex:1;border:0.5px solid #ddd;border-radius:6px;padding:6px 10px;font-size:12px;background:#fff;color:#333;outline:none}
+.popup-sub-btn{background:#5ba3d1;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
+.popup-close{margin-left:auto;background:none;border:none;color:#aaa;cursor:pointer;font-size:16px;line-height:1;flex-shrink:0}
+.sound-bars{display:none;align-items:center;gap:2px}
+</style>
+
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Insights article mockup with scroll popup, tweetable quote, and related posts grid</h2>
+
+<div class="article-wrap">
+<div class="article">
+
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+
+  <div class="body">
+
+    <div class="back"><i class="ti ti-arrow-left" style="font-size:13px" aria-hidden="true"></i> Insights Hub</div>
+    <div class="eyebrow">Decision Intelligence</div>
+    <div class="h1">Closing the Decision Gap</div>
+
+    <div class="meta">
+      <span>6 min read</span>
+      <span>·</span>
+      <span>Inteliment® Practice Team</span>
+    </div>
+
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=70" alt="Data decision gap" />
+    </div>
+
+    <div class="toolbar">
+      <button class="btn-listen" id="listenBtn" onclick="togglePlay()">
+        <i class="ti ti-player-play" id="listenIcon" style="font-size:13px" aria-hidden="true"></i>
+        <span id="listenLabel">Listen</span>
+      </button>
+      <div class="sound-bars" id="soundBars">
+        <span id="b1" style="display:block;width:3px;height:8px;background:#5ba3d1;border-radius:2px"></span>
+        <span id="b2" style="display:block;width:3px;height:14px;background:#5ba3d1;border-radius:2px"></span>
+        <span id="b3" style="display:block;width:3px;height:10px;background:#5ba3d1;border-radius:2px"></span>
+        <span id="b4" style="display:block;width:3px;height:6px;background:#5ba3d1;border-radius:2px"></span>
+      </div>
+      <span style="flex:1"></span>
+      <span class="divider-v"></span>
+      <button class="btn-share" onclick="toggleShare()">
+        <i class="ti ti-share" style="font-size:13px" aria-hidden="true"></i>
+        Share
+        <i class="ti ti-chevron-down" id="shareChevron" style="font-size:11px" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="share-drawer" id="shareDrawer" style="display:none">
+      <span style="font-size:12px;color:#999">Share on:</span>
+      <span class="pill pill-li"><i class="ti ti-brand-linkedin" style="font-size:12px" aria-hidden="true"></i>LinkedIn</span>
+      <span class="pill pill-tw"><i class="ti ti-brand-x" style="font-size:12px" aria-hidden="true"></i>Twitter/X</span>
+      <span class="pill pill-wa"><i class="ti ti-brand-whatsapp" style="font-size:12px" aria-hidden="true"></i>WhatsApp</span>
+      <span class="pill pill-cp"><i class="ti ti-copy" style="font-size:12px" aria-hidden="true"></i>Copy link</span>
+    </div>
+
+    <div class="section-gap">
+
+      <p class="para">Most enterprises invest in data infrastructure. Few invest in the architecture of decisions. The result is predictable — dashboards nobody acts on, models that never reach production, and analytics teams that produce insight without outcome.</p>
+
+      <div class="h2">The Methodology Gap</div>
+
+      <p class="para">The gap between Stage 3 (predictive) and Stage 5 (decision intelligence) is not a technology gap. It is a methodology gap. Organisations at Stage 3 have built the capability to predict — but have not built the infrastructure to act on those predictions at the speed enterprise value requires.</p>
+
+      <div class="bullets-block">
+        <div class="bullets-title">Why most organisations stall at Stage 3:</div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>Predictions exist in data tools, not in decision workflows</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>Action owners are disconnected from insight producers</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>Speed of signal exceeds speed of organisational response</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>No shared definition of what "acting on data" means at each layer</span></div>
+      </div>
+
+      <div>
+        <div class="inline-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=70" alt="Enterprise analytics workflow" /></div>
+        <div class="caption">The prediction-to-action gap is where enterprise value is lost.</div>
+      </div>
+
+      <div class="tweet-block">
+        <div class="tweet-quote">80% of data insights go cold before a decision is made. The bottleneck isn't data — it's decision infrastructure.</div>
+        <button class="tweet-btn" onclick="handleTweet()">
+          <i class="ti ti-brand-x" style="font-size:13px" aria-hidden="true"></i>
+          Tweet this
+        </button>
+      </div>
+
+      <div class="cta-banner">
+        <div style="flex:1 1 200px">
+          <div class="cta-heading">Where does your organisation sit on the DI Maturity curve?</div>
+          <div class="cta-sub">Take the 5-minute assessment and get a personalised report.</div>
+        </div>
+        <button class="cta-btn">Get Your DI Maturity Score →</button>
+      </div>
+
+      <div class="h2">Decision Intelligence closes the gap</div>
+
+      <p class="para">Decision Intelligence is the systematic application of data, analytics, and AI to improve the speed, quality, and consistency of enterprise decisions at every layer of the organisation. Not just for the data team.</p>
+
+      <div class="bullets-block">
+        <div class="bullets-title">Decision Intelligence works across every leadership layer:</div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>For the CRO who needs the NPA before the credit committee meets</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>For the COO who needs OEE before the next shift starts</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>For the CDO who needs the churn signal before the customer decides</span></div>
+        <div class="bullet-item"><span class="bullet-dot">—</span><span>For the CFO who needs the margin delta before the pricing call</span></div>
+      </div>
+
+    </div>
+
+    <div class="engagement">
+      <button class="like-btn" id="likeBtn" onclick="toggleLike()">
+        <span id="likeHeart" style="font-size:15px">♡</span>
+        <span id="likeCount">47</span>
+      </button>
+      <div class="stars">
+        <span class="star-label">Rate this article:</span>
+        <div class="stars-row" id="starsRow">
+          <span onclick="rate(1)" style="cursor:pointer;color:#ddd">★</span>
+          <span onclick="rate(2)" style="cursor:pointer;color:#ddd">★</span>
+          <span onclick="rate(3)" style="cursor:pointer;color:#ddd">★</span>
+          <span onclick="rate(4)" style="cursor:pointer;color:#ddd">★</span>
+          <span onclick="rate(5)" style="cursor:pointer;color:#ddd">★</span>
+        </div>
+        <span id="rateLabel" style="font-size:12px;color:#aaa">Rate this</span>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;background:#f0f8ff;border:0.5px solid #b5d4f4;border-radius:8px;padding:14px 16px" id="scrollPopup">
+      <div style="display:flex;align-items:flex-start;gap:12px">
+        <div style="width:36px;height:36px;background:#EBF5FB;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <i class="ti ti-mail" style="font-size:18px;color:#185FA5" aria-hidden="true"></i>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:3px">Enjoying this article?</div>
+          <div style="font-size:12px;color:#666;margin-bottom:10px">Get weekly Decision Intelligence briefings — free, no spam.</div>
+          <div style="display:flex;gap:6px">
+            <input type="email" placeholder="your@email.com" style="flex:1;border:0.5px solid #b5d4f4;border-radius:6px;padding:6px 10px;font-size:12px;background:#fff;color:#333;outline:none" />
+            <button style="background:#5ba3d1;color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Subscribe free</button>
+          </div>
+          <div style="font-size:11px;color:#aaa;margin-top:6px">Joined by 12,400+ decision makers · Unsubscribe anytime</div>
+        </div>
+        <button onclick="document.getElementById('scrollPopup').style.display='none'" style="background:none;border:none;color:#bbb;cursor:pointer;font-size:18px;line-height:1;flex-shrink:0;padding:0">×</button>
+      </div>
+    </div>
+
+    <div class="related">
+      <div class="related-title">Related briefings</div>
+      <div class="related-grid">
+        <div class="related-card">
+          <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&q=70" alt="DI maturity" />
+          <div class="related-eyebrow">CXO Briefing</div>
+          <div class="related-h">The Five Dimensions of DI Maturity</div>
+          <div class="related-meta">5 min read</div>
+        </div>
+        <div class="related-card">
+          <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=400&q=70" alt="Data engineering" />
+          <div class="related-eyebrow">Data Engineering</div>
+          <div class="related-h">Why the Data Foundation Is the Most Important Investment in AI</div>
+          <div class="related-meta">7 min read</div>
+        </div>
+        <div class="related-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=70" alt="Analytics" />
+          <div class="related-eyebrow">Analytics</div>
+          <div class="related-h">From Dashboards to Decisions: The Missing Layer</div>
+          <div class="related-meta">4 min read</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+let playing = false;
+let liked = false;
+let likeCount = 47;
+let shareOpen = false;
+let rated = 0;
+let barAnim;
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('listenBtn');
+  const icon = document.getElementById('listenIcon');
+  const label = document.getElementById('listenLabel');
+  const bars = document.getElementById('soundBars');
+  if (playing) {
+    btn.style.background = '#1a1a1a';
+    btn.style.color = '#5ba3d1';
+    icon.className = 'ti ti-player-pause';
+    label.textContent = 'Pause';
+    bars.style.display = 'flex';
+    animateBars();
+  } else {
+    btn.style.background = '#5ba3d1';
+    btn.style.color = '#fff';
+    icon.className = 'ti ti-player-play';
+    label.textContent = 'Resume';
+    bars.style.display = 'none';
+    clearTimeout(barAnim);
+  }
+}
+
+function animateBars() {
+  const frames = [[6,14,10,6],[14,6,14,10],[10,12,6,14],[8,10,12,8]];
+  let i = 0;
+  function step() {
+    if (!playing) return;
+    const h = frames[i++ % frames.length];
+    ['b1','b2','b3','b4'].forEach((id,j) => document.getElementById(id).style.height = h[j]+'px');
+    barAnim = setTimeout(step, 200);
+  }
+  step();
+}
+
+function toggleShare() {
+  shareOpen = !shareOpen;
+  document.getElementById('shareDrawer').style.display = shareOpen ? 'flex' : 'none';
+  document.getElementById('shareChevron').style.transform = shareOpen ? 'rotate(180deg)' : '';
+}
+
+function toggleLike() {
+  liked = !liked;
+  likeCount += liked ? 1 : -1;
+  const btn = document.getElementById('likeBtn');
+  document.getElementById('likeHeart').textContent = liked ? '♥' : '♡';
+  document.getElementById('likeCount').textContent = likeCount;
+  btn.style.background = liked ? 'rgba(239,68,68,0.08)' : 'transparent';
+  btn.style.color = liked ? '#ef4444' : '#aaa';
+  btn.style.borderColor = liked ? 'rgba(239,68,68,0.35)' : '#ddd';
+}
+
+function rate(val) {
+  rated = val;
+  const labels = ['Poor','Fair','Good','Great','Excellent'];
+  const spans = document.getElementById('starsRow').querySelectorAll('span');
+  spans.forEach((s,i) => s.style.color = i < val ? '#5ba3d1' : '#ddd');
+  const lbl = document.getElementById('rateLabel');
+  lbl.textContent = labels[val-1]+' · Thanks!';
+  lbl.style.color = '#5ba3d1';
+}
+
+function handleTweet() {
+  const btn = event.currentTarget;
+  btn.textContent = '✓ Copied to clipboard!';
+  btn.style.background = '#0F6E56';
+  setTimeout(() => {
+    btn.innerHTML = '<i class="ti ti-brand-x" style="font-size:13px;margin-right:6px"></i>Tweet this';
+    btn.style.background = '#000';
+  }, 2000);
+}
+</script>

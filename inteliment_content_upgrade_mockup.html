@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inteliment — Content Upgrade</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0D1117;
+    color: #C8D6E5;
+    min-height: 100vh;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ── Article context ── */
+  .article-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #378ADD;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .article-heading {
+    font-size: 28px;
+    font-weight: 600;
+    color: #F0F4F8;
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .article-body {
+    font-size: 15px;
+    color: #7A8EA8;
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+
+  .article-body strong {
+    color: #C8D6E5;
+    font-weight: 500;
+  }
+
+  /* ── Upgrade Card ── */
+  .upgrade-card {
+    background: #131B27;
+    border: 1px solid #1E3048;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .card-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px 0;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #1D6FA4;
+  }
+
+  .logo-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #378ADD;
+    letter-spacing: 0.03em;
+  }
+
+  .free-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1D9E75;
+    background: rgba(29, 158, 117, 0.1);
+    border: 1px solid rgba(29, 158, 117, 0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .free-pill svg {
+    width: 12px;
+    height: 12px;
+    stroke: #1D9E75;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .card-body {
+    padding: 20px 22px 24px;
+  }
+
+  .card-inner {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* PDF Preview */
+  .pdf-col { flex-shrink: 0; text-align: center; }
+
+  .pdf-cover {
+    width: 80px;
+    height: 100px;
+    background: #0D1827;
+    border: 1px solid #1E3A54;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pdf-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    border-color: transparent #1E3A54 transparent transparent;
+  }
+
+  .pdf-cover::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    border-style: solid;
+    border-width: 0 15px 15px 0;
+    border-color: transparent #0D1827 transparent transparent;
+  }
+
+  .pdf-cover svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1D6FA4;
+    stroke-width: 1.6;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pdf-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #2A6BA0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pdf-pages {
+    font-size: 14px;
+    color: #3A5570;
+    margin-top: 7px;
+  }
+
+  /* Card Content */
+  .card-content { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-size: 19px;
+    font-weight: 500;
+    color: #E8F0FA;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: #7A8EA8;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* Checklist */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13.5px;
+    color: #8A9BB0;
+  }
+
+  .check-item svg {
+    width: 14px;
+    height: 14px;
+    stroke: #1D9E75;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* Form */
+  .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .email-input {
+    flex: 1;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid #1E3A54;
+    background: #0D1827;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #C8D6E5;
+    outline: none;
+    font-family: inherit;
+  }
+
+  .email-input::placeholder { color: #3A5570; }
+
+  .email-input:focus {
+    border-color: #1D6FA4;
+    box-shadow: 0 0 0 3px rgba(29, 111, 164, 0.15);
+  }
+
+  .submit-btn {
+    height: 44px;
+    padding: 0 22px;
+    background: #1D6FA4;
+    color: #E8F0FA;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    flex-shrink: 0;
+  }
+
+  .submit-btn:hover { background: #155A88; }
+
+  .submit-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: #E8F0FA;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: #3A5570;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .privacy-note svg {
+    width: 11px;
+    height: 11px;
+    stroke: #3A5570;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* Stats Bar */
+  .stats-divider { height: 1px; background: #1E3048; margin: 0 22px; }
+
+  .stats-row {
+    display: flex;
+    padding: 14px 22px;
+  }
+
+  .stat { flex: 1; text-align: center; }
+
+  .stat-num {
+    font-size: 16px;
+    font-weight: 500;
+    color: #378ADD;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #3A5570;
+    margin-top: 3px;
+  }
+
+  .stat-sep {
+    width: 1px;
+    background: #1E3048;
+    margin: 4px 0;
+  }
+
+  /* ── Success State ── */
+  .success-card {
+    background: #131B27;
+    border: 1px solid rgba(29, 158, 117, 0.3);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    display: none;
+  }
+
+  .success-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(29, 158, 117, 0.1);
+    border: 1px solid rgba(29, 158, 117, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .success-ring svg {
+    width: 26px;
+    height: 26px;
+    stroke: #1D9E75;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .success-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #E8F0FA;
+    margin-bottom: 8px;
+  }
+
+  .success-desc {
+    font-size: 14px;
+    color: #7A8EA8;
+    line-height: 1.65;
+  }
+
+  /* ── After text ── */
+  .after-body {
+    font-size: 15px;
+    color: #4A6080;
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Preview State Toggle ── */
+  .toggle-section {
+    padding-top: 1.5rem;
+    border-top: 1px solid #1A2535;
+  }
+
+  .toggle-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #3A5570;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 10px;
+  }
+
+  .pills-row { display: flex; gap: 8px; }
+
+  .tpill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #1E3048;
+    background: transparent;
+    color: #5A7A9A;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .tpill svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .tpill.active {
+    border-color: #1D6FA4;
+    background: rgba(29, 111, 164, 0.1);
+    color: #378ADD;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Article Context -->
+  <div class="article-label">Decision Intelligence Insights</div>
+  <h1 class="article-heading">How to turn 20 years of enterprise data into autonomous AI-driven decisions</h1>
+  <p class="article-body">
+    Most organisations sitting on decades of data are still making decisions the old way — slow,
+    fragmented, and reactive. The gap between <strong>data availability and decision speed</strong>
+    is widening, not closing. Decision Intelligence closes that gap by building autonomous pipelines
+    that connect raw data to action without manual bottlenecks...
+  </p>
+
+  <!-- Upgrade Card -->
+  <div class="upgrade-card" id="upgrade-card">
+    <div class="card-top-bar">
+      <div class="logo-mark">
+        <div class="logo-dot"></div>
+        <div class="logo-text">Inteliment</div>
+      </div>
+      <div class="free-pill">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Free PDF guide
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-inner">
+        <!-- PDF Cover -->
+        <div class="pdf-col">
+          <div class="pdf-cover">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            <div class="pdf-label">PDF</div>
+          </div>
+          <div class="pdf-pages">32 pages</div>
+        </div>
+
+        <!-- Content -->
+        <div class="card-content">
+          <div class="card-title">The enterprise guide to Decision Intelligence</div>
+          <div class="card-desc">
+            A practical framework for transforming fragmented analytics into autonomous,
+            AI-driven decision systems — built for data leaders at scale.
+          </div>
+
+          <div class="checklist">
+            <div class="check-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              The 5-layer Decision Intelligence architecture
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              How to build AI agents on legacy enterprise data
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              ROI benchmarks from automotive, banking &amp; healthcare
+            </div>
+            <div class="check-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Governance and ISO-compliance checklist included
+            </div>
+          </div>
+
+          <div class="form-row">
+            <input class="email-input" type="email" id="email-input" placeholder="work@company.com">
+            <button class="submit-btn" onclick="handleSubmit()">
+              Get the guide
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+
+          <div class="privacy-note">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            No spam. Unsubscribe anytime. For enterprise data professionals.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-divider"></div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">4,200+</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <div class="stat-num">Fortune 500</div>
+        <div class="stat-label">Readers</div>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <div class="stat-num">20 yrs</div>
+        <div class="stat-label">Practitioner insight</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success State -->
+  <div class="success-card" id="success-card">
+    <div class="success-ring">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="success-title">The guide is on its way</div>
+    <div class="success-desc">
+      Check your inbox — the PDF will arrive within a few minutes.<br>
+      Continue reading while you wait.
+    </div>
+  </div>
+
+  <!-- After Article Text -->
+  <p class="after-body">
+    ...the organisations that move fastest on Decision Intelligence aren't the ones with the most data.
+    They're the ones with the clearest pipeline from raw signal to autonomous action. Continue reading
+    to see how the 5-layer model works in practice...
+  </p>
+
+  <!-- Preview State Toggle -->
+  <div class="toggle-section">
+    <div class="toggle-label">Preview States</div>
+    <div class="pills-row">
+      <button class="tpill active" id="pill-default" onclick="setView('default')">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Default
+      </button>
+      <button class="tpill" id="pill-success" onclick="setView('success')">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        After submit
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setView(v) {
+    var uc = document.getElementById('upgrade-card');
+    var sc = document.getElementById('success-card');
+    var pd = document.getElementById('pill-default');
+    var ps = document.getElementById('pill-success');
+    if (v === 'default') {
+      uc.style.display = 'block';
+      sc.style.display = 'none';
+      pd.classList.add('active');
+      ps.classList.remove('active');
+    } else {
+      uc.style.display = 'none';
+      sc.style.display = 'block';
+      pd.classList.remove('active');
+      ps.classList.add('active');
+    }
+  }
+
+  function handleSubmit() {
+    var val = document.getElementById('email-input').value;
+    if (val && val.includes('@')) {
+      setView('success');
+    } else {
+      var inp = document.getElementById('email-input');
+      inp.style.borderColor = '#C0392B';
+      inp.focus();
+    }
+  }
+</script>
+</body>
+</html>

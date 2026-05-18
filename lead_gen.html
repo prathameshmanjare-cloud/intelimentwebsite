@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Gen UI Components</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #F5F7FA 0%, #EBEEF2 100%);
+    color: #4A5568;
+    min-height: 100vh;
+  }
+  .wrap { padding: 2.5rem 2rem; max-width: 1280px; margin: 0 auto; }
+
+  /* Section */
+  .section { margin-bottom: 3rem; }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid #DDE2E8; }
+  .sec-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .sec-ico svg { width: 20px; height: 20px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .si-red { background: linear-gradient(135deg, #FDE8E8, #F8D0D0); } .si-red svg { stroke: #C0392B; }
+  .si-blue { background: linear-gradient(135deg, #D6EAF8, #C1DFF5); } .si-blue svg { stroke: #2471A3; }
+  .si-green { background: linear-gradient(135deg, #D5F5E3, #C3EDCC); } .si-green svg { stroke: #277D1F; }
+  .si-amber { background: linear-gradient(135deg, #FDEBD0, #F9E0B8); } .si-amber svg { stroke: #CA6702; }
+  .si-purple { background: linear-gradient(135deg, #E8E0FC, #D8CCFB); } .si-purple svg { stroke: #6C5CE7; }
+  .sec-title { font-size: 18px; font-weight: 600; color: #1A202C; }
+  .sec-sub { font-size: 14px; color: #718096; margin-top: 3px; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+  /* Card */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #DDE2E8;
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    transition: all 0.25s ease;
+  }
+  .card:hover {
+    border-color: #B0BEC5;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+  }
+  .ctop { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+  .cico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .cico svg { width: 20px; height: 20px; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .i-red { background: linear-gradient(135deg, #FDE8E8, #F8D0D0); } .i-red svg { stroke: #C0392B; }
+  .i-blue { background: linear-gradient(135deg, #D6EAF8, #C1DFF5); } .i-blue svg { stroke: #2471A3; }
+  .i-green { background: linear-gradient(135deg, #D5F5E3, #C3EDCC); } .i-green svg { stroke: #277D1F; }
+  .i-amber { background: linear-gradient(135deg, #FDEBD0, #F9E0B8); } .i-amber svg { stroke: #CA6702; }
+  .i-purple { background: linear-gradient(135deg, #E8E0FC, #D8CCFB); } .i-purple svg { stroke: #6C5CE7; }
+
+  /* Badge */
+  .badge { font-size: 13px; font-weight: 600; padding: 4px 11px; border-radius: 20px; white-space: nowrap; }
+  .b-red { background: #FDE8E8; color: #C0392B; border: 1px solid #F8D0D0; }
+  .b-blue { background: #D6EAF8; color: #2471A3; border: 1px solid #C1DFF5; }
+  .b-green { background: #D5F5E3; color: #277D1F; border: 1px solid #C3EDCC; }
+  .b-amber { background: #FDEBD0; color: #CA6702; border: 1px solid #F9E0B8; }
+  .b-purple { background: #E8E0FC; color: #6C5CE7; border: 1px solid #D8CCFB; }
+
+  .ctitle { font-size: 16px; font-weight: 600; color: #1A202C; margin-bottom: 7px; line-height: 1.35; }
+  .cdesc { font-size: 14.5px; color: #5A6A7A; line-height: 1.65; flex: 1; }
+  .ceg { font-size: 13.5px; color: #8C9AAE; margin-top: 13px; padding-top: 11px; border-top: 1px solid #E8ECF0; line-height: 1.55; font-style: italic; }
+
+  /* Pro tip */
+  .tip-box {
+    background: linear-gradient(135deg, #F3F0FF, #EDE8FA);
+    border-left: 4px solid #6C5CE7;
+    border-radius: 0 12px 12px 0;
+    padding: 18px 20px;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 14px rgba(108,92,231,0.08);
+  }
+  .tip-lbl { font-size: 13px; font-weight: 700; color: #6C5CE7; text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 8px; }
+  .tip-txt { font-size: 15px; color: #4A5568; line-height: 1.75; }
+  .tip-txt strong { color: #1A202C; font-weight: 600; }
+
+  /* CTA Button */
+  .cta-btn {
+    margin-top: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: 12px;
+    border: 1px solid #DDE2E8;
+    background: #FFFFFF;
+    color: #1A202C;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: all 0.25s ease;
+  }
+  .cta-btn:hover {
+    background: #F8F9FA;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  .cta-btn svg { width: 15px; height: 15px; stroke: #1A202C; stroke-width: 2; fill: none; }
+
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .wrap { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- SECTION 1: CAPTURE -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-ico si-red">
+        <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <div>
+        <div class="sec-title">Capture — get the email</div>
+        <div class="sec-sub">High-priority forms and overlays</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-red"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <span class="badge b-red">Must-have</span>
+        </div>
+        <div class="ctitle">Inline content upgrade</div>
+        <div class="cdesc">An opt-in box embedded mid-article, offering a bonus resource tied to that exact post.</div>
+        <div class="ceg">"Get the free checklist for this guide → [Email] [Download]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-red"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 20h20M12 4v12"/></svg></div>
+          <span class="badge b-red">Must-have</span>
+        </div>
+        <div class="ctitle">Sticky footer bar</div>
+        <div class="cdesc">A slim bar pinned to the bottom of the viewport with a one-line value prop and email field.</div>
+        <div class="ceg">"Join 12,000 readers. Weekly insights, no spam. [Subscribe]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-red"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+          <span class="badge b-red">Must-have</span>
+        </div>
+        <div class="ctitle">Exit-intent popup</div>
+        <div class="cdesc">Triggers when the cursor moves toward the browser bar — last chance to capture before they leave.</div>
+        <div class="ceg">"Wait! Get our free ebook before you go → [Yes, send it]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-red"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <span class="badge b-red">High impact</span>
+        </div>
+        <div class="ctitle">Content gate</div>
+        <div class="cdesc">Show 60% of a long article, blur the rest. Subscribe to unlock the full piece.</div>
+        <div class="ceg">"This article is free for subscribers → [Continue reading]"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SMART CTAs -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-ico si-blue">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div>
+        <div class="sec-title">Smart CTAs — context-aware prompts</div>
+        <div class="sec-sub">Triggered by scroll depth, topic, or behavior</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-blue"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+          <span class="badge b-blue">Contextual</span>
+        </div>
+        <div class="ctitle">End-of-post CTA</div>
+        <div class="cdesc">After the article ends, readers are primed — place a topic-matched subscribe prompt here.</div>
+        <div class="ceg">"Get our weekly SEO playbook → [Subscribe free]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-blue"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <span class="badge b-blue">Contextual</span>
+        </div>
+        <div class="ctitle">Lead magnet card</div>
+        <div class="cdesc">A visually distinct card mid-page or sidebar promoting a free resource (PDF, template, tool).</div>
+        <div class="ceg">"Free: 50 email subject line templates → [Get the PDF]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span class="badge b-blue">Smart</span>
+        </div>
+        <div class="ctitle">Scroll-triggered slide-in</div>
+        <div class="cdesc">Appears from bottom-right after user scrolls 60–70% down, signaling genuine interest.</div>
+        <div class="ceg">"Enjoying this? Get more like it → [Yes please]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <span class="badge b-blue">Smart</span>
+        </div>
+        <div class="ctitle">Quiz or assessment</div>
+        <div class="cdesc">Multi-step interactive quiz — results gated behind email. High engagement, high conversion.</div>
+        <div class="ceg">"What's your marketing maturity score? → [Get results]"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: TRUST -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-ico si-green">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="sec-title">Trust — overcome hesitation</div>
+        <div class="sec-sub">Social proof and transparency signals</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-green"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <span class="badge b-green">Trust signal</span>
+        </div>
+        <div class="ctitle">Social proof counter</div>
+        <div class="cdesc">Show subscriber count or logos of well-known brands/companies in your audience.</div>
+        <div class="ceg">"Trusted by 24,000 marketers at Google, HubSpot, Shopify"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-green"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <span class="badge b-green">Trust signal</span>
+        </div>
+        <div class="ctitle">Testimonial snippet</div>
+        <div class="cdesc">A 1–2 sentence quote from a real subscriber near the opt-in form to reduce signup friction.</div>
+        <div class="ceg">"This newsletter changed how I run my agency — [Name, Founder]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-green"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <span class="badge b-green">Transparency</span>
+        </div>
+        <div class="ctitle">Sample issue preview</div>
+        <div class="cdesc">Link to a past newsletter so users know exactly what they're subscribing to before deciding.</div>
+        <div class="ceg">"Here's a recent issue → [Preview] before you decide"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-green"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <span class="badge b-green">Urgency</span>
+        </div>
+        <div class="ctitle">Scarcity block</div>
+        <div class="cdesc">Time-limited offer or limited-seat cohort to push wavering visitors to act now.</div>
+        <div class="ceg">"Doors close Friday. 47 spots left in the free cohort → [Join now]"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ENGAGEMENT -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-ico si-amber">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div>
+        <div class="sec-title">Engagement — keep them coming back</div>
+        <div class="sec-sub">Retention, community, and referral loops</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-amber"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h10"/></svg></div>
+          <span class="badge b-amber">Retention</span>
+        </div>
+        <div class="ctitle">Related posts widget</div>
+        <div class="cdesc">3 curated article cards at the end of every post, matched by topic to increase pages-per-session.</div>
+        <div class="ceg">"You might also like → [card] [card] [card]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-amber"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <span class="badge b-amber">Community</span>
+        </div>
+        <div class="ctitle">Comment / reaction bar</div>
+        <div class="cdesc">Quick emoji reactions or a short comment prompt requiring account signup to participate.</div>
+        <div class="ceg">"Was this useful? Leave a comment (free account)"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-amber"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <span class="badge b-amber">Interactive</span>
+        </div>
+        <div class="ctitle">Poll / vote widget</div>
+        <div class="cdesc">Embed a one-question poll mid-post. Results viewable after voting — keeps users engaged.</div>
+        <div class="ceg">"Which tool do you use most? [Option A] [Option B] [Vote]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-amber"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+          <span class="badge b-amber">Referral</span>
+        </div>
+        <div class="ctitle">Share + refer block</div>
+        <div class="cdesc">Post-subscribe page with a referral link — unlock bonus content by referring friends.</div>
+        <div class="ceg">"Refer 3 friends → unlock the full swipe file [Copy link]"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: CONVERT -->
+  <div class="section">
+    <div class="sec-head">
+      <div class="sec-ico si-purple">
+        <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      </div>
+      <div>
+        <div class="sec-title">Convert — move leads down the funnel</div>
+        <div class="sec-sub">High-intent actions and personalization</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-purple"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <span class="badge b-purple">High intent</span>
+        </div>
+        <div class="ctitle">Book a call CTA</div>
+        <div class="cdesc">For service businesses — embed a Calendly widget or button after high-intent content.</div>
+        <div class="ceg">"Want us to do this for you? → [Book a free 20-min call]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-purple"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <span class="badge b-purple">Personalized</span>
+        </div>
+        <div class="ctitle">Preference selector</div>
+        <div class="cdesc">Let subscribers pick their topics at signup — increases relevance and open rates later.</div>
+        <div class="ceg">"What are you most interested in? [SEO] [Ads] [Content]"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-purple"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg></div>
+          <span class="badge b-purple">Nurture</span>
+        </div>
+        <div class="ctitle">Free tool / calculator</div>
+        <div class="cdesc">Embed a useful calculator or generator — results delivered to email, capturing the lead.</div>
+        <div class="ceg">"ROI calculator → [Run the numbers] → email me my results"</div>
+      </div>
+      <div class="card">
+        <div class="ctop">
+          <div class="cico i-purple"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></div>
+          <span class="badge b-purple">Social</span>
+        </div>
+        <div class="ctitle">Tweetable insight block</div>
+        <div class="cdesc">Pull quote styled as a shareable card with a one-click tweet button to drive organic traffic back.</div>
+        <div class="ceg">"80% of leads go cold after 5 days → [Tweet this]"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRO TIP -->
+  <div class="tip-box">
+    <div class="tip-lbl">Pro tip</div>
+    <div class="tip-txt">
+      Don't stack more than 2–3 of these on a single page. The highest-converting combo for blogs is:
+      <strong>inline content upgrade</strong> (mid-post) + <strong>end-of-post CTA</strong> + <strong>scroll-triggered slide-in</strong>.
+      For newsletters, add a <strong>sample issue preview</strong> and a <strong>subscriber count</strong> near every opt-in form.
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
